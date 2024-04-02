@@ -6,9 +6,9 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  pull_request:
+  push:
     branches:
-      - "main"
+      - "production"
 
 permissions:
   contents: write
@@ -32,7 +32,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: nghiadaulau/crawler-website
+          images: ${{ secrets.DOCKER_USERNAME }}/crawler-website
           tags: |
             type=raw,value={{date 'YYYY-MM-DD'}}
 
